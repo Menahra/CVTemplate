@@ -1,78 +1,64 @@
-#import "content/utils.typ": accentColor, spacing;
-#import "content/LeftPane.typ": LeftPane;
-#import "content/RightPane.typ": RightPane;
+#import "content/utils.typ": prepare-cv;
+#import "themes/modern.typ" as modern;
+#import "themes/classic.typ" as classic;
+#import "themes/terminal.typ" as terminal;
 
+// all selectable designs, by the name used in config.json ("theme")
+#let themes = (
+  modern: modern.render,
+  classic: classic.render,
+  terminal: terminal.render,
+);
+
+#let defaultTheme = "modern";
+
+// Renders the CV.
+//
+// - jsonFilePath: path to the applicant JSON (or an already loaded dictionary)
+// - configJsonFilePath: path to the config JSON (or a dictionary), or none
+// - photoPath: path to the photo (or its bytes), or none for no photo
+// - locale: name of a file in translations/, e.g. "en_US" or "de_DE"
+// - theme: overrides the "theme" from the config, e.g. "classic"
+//
+// All paths are relative to this file, i.e. to the root of the template.
 #let CVTemplate(
   jsonFilePath,
   configJsonFilePath,
   photoPath,
   locale,
+  theme: auto,
 ) = {
-  let applicantData = json(jsonFilePath);
-  let config;
-  if (configJsonFilePath != none) {
-    config = json(configJsonFilePath);
-  }
-  let translations = json("./translations/" + locale + ".json");
+  let load(source) = if type(source) == dictionary { source } else { json(source) };
 
-  // remove margins of page
-  set page(
-    margin: (x: 0pt, y: 0pt)
-  )
+  let applicantData = load(jsonFilePath);
+  let config = if configJsonFilePath == none { (:) } else { load(configJsonFilePath) };
+  let translations = json("./translations/" + locale + ".json");
+  let photo = if photoPath == none {
+    none
+  } else if type(photoPath) == bytes {
+    photoPath
+  } else {
+    read(photoPath, encoding: none)
+  };
 
   // attribution is only shown when a config is given and it does not
   // explicitly disable it via "showAttribution": false
-  let showAttribution = config != none and config.at("showAttribution", default: true);
+  let showAttribution = configJsonFilePath != none and config.at("showAttribution", default: true);
 
-  let rightContent;
-  if (not showAttribution) {
-    rightContent = box(
-      width: 100%,
-      height: 100%,
-      inset: (x: spacing(amount: 3), y: spacing(amount: 4)),
-      RightPane(
-        applicantData,
-        translations
-      )
-    );
-  } else {
-    rightContent = box(
-      width: 100%,
-      height: 100%,
-      inset: (x: spacing(amount: 3), top: spacing(amount: 4), bottom: spacing(amount: 1)),
-      [
-        #box(
-          width: 100%,
-          height: 95%,
-          inset: (bottom: spacing(amount: 1.5)),
-          RightPane(
-            applicantData,
-            translations
-          )
-        )
-        #align(
-          center + bottom,
-          text(7pt, translations.attribution)
-        )
-      ]
-    )
-  }
+  let themeName = if theme == auto { config.at("theme", default: defaultTheme) } else { theme };
+  assert(
+    themeName in themes,
+    message: "unknown theme \"" + themeName + "\", available: " + themes.keys().join(", "),
+  );
 
-  grid(
-    columns: (30%, 70%),
-    rows: 100%,
-    gutter: 0pt,
-    box(
-      width: 100%,
-      height: 100%,
-      fill: accentColor,
-      inset: spacing(amount: 3),
-      LeftPane(
-        applicantData,
-        photoPath,
-        translations
-      )
-    ),
-    rightContent
-  )
+  let cv = prepare-cv(
+    applicantData,
+    translations,
+    locale,
+    photo: photo,
+    config: config,
+    showAttribution: showAttribution,
+  );
+
+  themes.at(themeName)(cv)
 };

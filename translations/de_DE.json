@@ -1,9 +1,17 @@
 {
   "contactTitle": "Kontaktdaten",
-  "skillTitle": "Kernkompetenzen",
-  "profileTitle": "Professional Profile",
+  "skillTitle": "Kenntnisse",
+  "languagesTitle": "Sprachen",
+  "knowledgeTitle": "Kenntnisse & Sprachen",
+  "profileTitle": "Profil",
   "workHistoryTitle": "Beruflicher Werdegang",
   "educationTitle": "Ausbildung",
   "additionalTitle": "Ergänzend",
+  "present": "heute",
+  "locationLabel": "Anschrift",
+  "phoneLabel": "Telefon",
+  "emailLabel": "E-Mail",
+  "websiteLabel": "Website",
+  "githubLabel": "GitHub",
   "attribution": "Dieses CV wurde generiert auf Basis von: https://github.com/Menahra/CVTemplate"
 }

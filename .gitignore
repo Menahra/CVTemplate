@@ -2,4 +2,4 @@
 *.pdf
 *.JP*G
 *.png
-!test/CVTemplateTestOutput.png
+!previews/*.png

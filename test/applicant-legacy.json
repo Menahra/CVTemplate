@@ -1,0 +1,88 @@
+{
+  "name": "Rylee Adams",
+  "jobTitle": "Fullstack Dev",
+  "location": "Musterstraße 32, 10117 Berlin",
+  "phone": "(+49) 123456789",
+  "email": "rylee@adams.com",
+  "website": "https://ryleeadams.com",
+  "github": "https://github.io/ryleeAdams",
+  "skills": [
+    "finance",
+    "housekeeping",
+    "research",
+    "management",
+    "accounting",
+    "analytics",
+    "MS Word"
+  ],
+  "profile": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+  "workHistory": [
+    {
+      "name": "TraumKuh",
+      "from": "January 2017",
+      "to": "April 2019",
+      "description": "Dishwasher",
+      "tasks": [
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod"
+      ]
+    },
+    {
+      "name": "KLM",
+      "from": "April 2019",
+      "to": "June 2020",
+      "description": "Steward",
+      "tasks": [
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod"
+      ]
+    },
+    {
+      "name": "AAA",
+      "from": "June 2020",
+      "to": "December 2021",
+      "description": "Software Developer",
+      "tasks": [
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",
+        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institute": "Kaiba University",
+      "title": "BA Some thing",
+      "from": "May 2004",
+      "to": "Sep 2008"
+    },
+    {
+      "institute": "Kaiba University",
+      "title": "MA Any thing",
+      "from": "Nov 2008",
+      "to": "Sep 2011"
+    },
+    {
+      "institute": "Kaiba University",
+      "title": "PhD",
+      "from": "Feb 2012",
+      "to": "Sep 2018"
+    }
+  ],
+  "additional": [
+    {
+      "title": "Software",
+      "items": [
+        "MS Office", "WordPress", "Lorem"
+      ]
+    },
+    {
+      "title": "Languages",
+      "items": [
+        "English", "French", "Brasilian (Portugues)"
+      ]
+    }
+  ]
+}

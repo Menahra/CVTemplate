@@ -4,7 +4,7 @@ on: push
 
 jobs:
   test:
-    name: Test whether CVTemplate and all subfiles compile
+    name: Test whether CVTemplate, all themes and all subfiles compile
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/typst/typst:latest
@@ -15,5 +15,14 @@ jobs:
       - name: "test utils"
         run: typst compile content/utils.typ --root .
 
-      - name: "test CVTemplate"
-        run: typst compile test/CVTemplateTest.typ --root .
+      - name: "test modern theme (default, from config)"
+        run: typst compile test/CVTemplateTest.typ --root . --font-path fonts
+
+      - name: "test classic theme (German)"
+        run: typst compile test/CVTemplateTestClassic.typ --root . --font-path fonts
+
+      - name: "test terminal theme"
+        run: typst compile test/CVTemplateTestTerminal.typ --root . --font-path fonts
+
+      - name: "test legacy data format in every theme"
+        run: typst compile test/CVTemplateTestLegacy.typ --root . --font-path fonts
