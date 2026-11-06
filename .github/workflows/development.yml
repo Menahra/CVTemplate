@@ -10,7 +10,7 @@ jobs:
       image: ghcr.io/typst/typst:latest
     steps:
       - name: "checkout repository"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
 
       - name: "test utils"
         run: typst compile content/utils.typ --root .
