@@ -20,8 +20,12 @@
     margin: (x: 0pt, y: 0pt)
   )
 
+  // attribution is only shown when a config is given and it does not
+  // explicitly disable it via "showAttribution": false
+  let showAttribution = config != none and config.at("showAttribution", default: true);
+
   let rightContent;
-  if (config == none) {
+  if (not showAttribution) {
     rightContent = box(
       width: 100%,
       height: 100%,
