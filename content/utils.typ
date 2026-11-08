@@ -51,16 +51,27 @@
 // ---------------------------------------------------------------------------
 
 // The applicant photo cropped into a box, or `none` when no photo was given.
+//
+// The photo always fills the whole box. Unlike `fit: "cover"`, which crops
+// evenly from all sides, the crop is anchored at the top: a portrait photo
+// loses its bottom (shoulders) rather than the top of the head.
 #let photo-box(cv, width, height: auto, radius: 0pt, stroke: none, fill: white) = {
   if cv.photo == none { return none }
+  let height = if height == auto { width } else { height }
   box(
     clip: true,
     radius: radius,
     stroke: stroke,
     fill: fill,
     width: width,
-    height: if height == auto { width } else { height },
-    image(cv.photo, width: 100%, height: 100%, fit: "cover"),
+    height: height,
+    context {
+      let natural = measure(image(cv.photo))
+      let scale = calc.max(width / natural.width, height / natural.height)
+      // both dimensions must be given: with only one, typst stretches the
+      // image to the box and falls back to a centred crop
+      place(top + center, image(cv.photo, width: natural.width * scale, height: natural.height * scale))
+    },
   )
 }
 
